@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>PayPal Smart Payment Buttons Integration</title>
+</head>
+
+<body>
+  <div>
+  <img src="https://www.linkpicture.com/q/chessboard.png" alt="chessboard" width="250" height="250">
+  <h1>Wooden Chess Board</h1>
+	<h2>Amount : $1</h2>
+</div>
+    <div id="paypal-button-container"></div>
+    <style>
+      /* Media query for mobile viewport */
+      @media screen and (max-width: 400px) {
+          #paypal-button-container {
+              width: 100%;
+          }
+      }
+      
+      /* Media query for desktop viewport */
+      @media screen and (min-width: 400px) {
+          #paypal-button-container {
+              width: 250px;
+          }
+      }
+  </style>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AYTWSduEpqb-EXuqWNDhjA0sl863oNk18atZNPhf8AUq0piPACNP8iREsiNiFUhuFsfvUuWHFdVyAvtq&currency=USD"></script>
+
+    <script>
+        paypal.Buttons({
+
+            // Call your server to set up the transaction
+            createOrder: function(data, actions) {
+                return fetch('/api/createOrder', {
+                    method: 'post'
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(orderData) {
+                    return orderData.id;
+                });
+            },
+
+            // Call your server to finalize the transaction
+            onApprove: function(data, actions) {
+                return fetch('/api/captureOrder', {
+                    method: 'post'
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(orderData) {
+					        window.location.href = '/success';
+                });
+            },
+
+        onCancel: function (data) {
+          window.location.href = '/cancel';
+    }
+
+        }).render('#paypal-button-container');
+    </script>
+</body>
+
+</html>
+    
