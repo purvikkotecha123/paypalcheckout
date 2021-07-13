@@ -137,10 +137,28 @@ app.post("/api/createOrder", (req, res) => {
     "purchase_units" : [ 
         {
             "reference_id" : "ABC",
+            "description" : "Chess Board",
             "amount" : {
                 "currency_code" : "USD",
-                "value" : "1",
-            }
+                "value" : "25",
+                "breakdown" : {
+                    "item_total" : {
+                        "currency_code" : "USD",
+                        "value" : "25",
+                    }
+                }
+            },
+            "items" : [{
+                "name" : "Chess Board",
+                "description" : "Wooden Chess Board",
+                "sku" : "sku01",
+                "unit_amount" : {
+                    "currency_code" : "USD",
+                     "value" : "25",
+                },
+                "quantity" : "1",
+                "category" : "PHYSICAL_GOODS"
+            }]
         }
     ]
   };
