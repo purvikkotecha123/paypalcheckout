@@ -8,9 +8,18 @@
     <title>PayPal Smart Payment Buttons Integration</title>
 </head>
 
-<body>
+<div id="applepay-btn"></div>
+<script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AaYAZqbhR8vNeJQBcV6MwNEqLsS0sk5R6sQ9u3vXUh1YJDb7UAME8RhNL-3mj-F-NzEBj7RVxwuFbcp5&merchant-id=4JLZ2LPZ3PJJU&currency=USD&components=buttons"></script>
+
+// Render Apple Pay button
+<script>
+    paypal.Buttons({
+        fundingSource: paypal.FUNDING.APPLEPAY
+    }).render("#applepay-btn");
+</script>
+<!-- <body>
   <div>
-  <img src="https://www.linkpicture.com/q/chessboard.png" alt="chessboard" width="250" height="250">
   <h3>Chess Board</h1>
 	<h4>Amount : $25</h4>
 </div>
@@ -31,7 +40,7 @@
       }
   </style>
   <h5>Payment Test Credentials >> Username / Password : sb-xwdfz6023049@personal.example.com / Buyer123$</h5>
-
+<script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script>
 <script src="https://www.paypal.com/sdk/js?client-id=AaYAZqbhR8vNeJQBcV6MwNEqLsS0sk5R6sQ9u3vXUh1YJDb7UAME8RhNL-3mj-F-NzEBj7RVxwuFbcp5&currency=USD&buyer-country=US&merchant-id=4JLZ2LPZ3PJJU&components=applepay"></script>
 
     <script>
@@ -65,7 +74,7 @@
 
         }).render('#paypal-button-container');
     </script>
-</body>
+</body> -->
 
 </html>
     
